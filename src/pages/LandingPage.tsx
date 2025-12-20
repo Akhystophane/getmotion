@@ -3,8 +3,6 @@ import { Hero } from '../components/Hero'
 import { PhoneShowcase } from '../components/PhoneShowcase'
 import { HowItWorks } from '../components/HowItWorks'
 import { CTASection } from '../components/CTASection'
-import { VideoShowcase } from '../components/VideoShowcase'
-import { UserQualification } from '../components/UserQualification'
 import { Footer } from '../components/Footer'
 import { LoadingScreen } from '../components/LoadingScreen'
 

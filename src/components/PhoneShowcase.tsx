@@ -241,7 +241,8 @@ export function PhoneShowcase() {
 
   const rectangleClipPath = useTransform(
     [rectangleWidth, rectangleHeight],
-    ([w, h]) => {
+    (values: number[]) => {
+      const [w, h] = values
       const rightInset = 100 - w
       const topBottomInset = (100 - h) / 2
       return `inset(${topBottomInset}% ${rightInset}% ${topBottomInset}% 0%)`
@@ -481,7 +482,8 @@ export function PhoneShowcase() {
           style={{
             pathLength: useTransform(
               [curve1ProgressIn, curve1ProgressOut],
-              ([progressIn, progressOut]) => {
+              (values: number[]) => {
+                const [progressIn, progressOut] = values
                 // Use write-out if it's less than 1, otherwise use write-in
                 return progressOut < 1 ? progressOut : progressIn
               }
@@ -514,7 +516,8 @@ export function PhoneShowcase() {
           style={{
             pathLength: useTransform(
               [curve2ProgressIn, curve2ProgressOut],
-              ([progressIn, progressOut]) => {
+              (values: number[]) => {
+                const [progressIn, progressOut] = values
                 // Use write-out if it's less than 1, otherwise use write-in
                 return progressOut < 1 ? progressOut : progressIn
               }
@@ -547,7 +550,8 @@ export function PhoneShowcase() {
           style={{
             pathLength: useTransform(
               [curve3ProgressIn, curve3ProgressOut],
-              ([progressIn, progressOut]) => {
+              (values: number[]) => {
+                const [progressIn, progressOut] = values
                 // Use write-out if it's less than 1, otherwise use write-in
                 return progressOut < 1 ? progressOut : progressIn
               }
