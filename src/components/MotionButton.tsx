@@ -6,16 +6,28 @@ interface MotionButtonProps {
   className?: string
 }
 
-export function MotionButton({ 
-  text = "Get a Free Sample", 
+const WHATSAPP_URL = "https://wa.me/33768256764?text=Hi%2C%20I%E2%80%99d%20like%20my%20free%20video%20sample.%20Here%E2%80%99s%20my%20script%2Fidea%3A"
+
+export function MotionButton({
+  text = "Get a Free Sample",
   onClick,
   className = ''
 }: MotionButtonProps) {
   const [isHovered, setIsHovered] = useState(false)
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (onClick) {
+      onClick()
+    } else {
+      // If no custom onClick, open WhatsApp
+      window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer')
+      e.preventDefault()
+    }
+  }
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`

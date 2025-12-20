@@ -5,9 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 0;
+    /* Enable scroll snap for smoother video transitions */
+    scroll-snap-type: y proximity;
   }
-  
+
   body {
     @apply font-sans antialiased;
+    /* Smoother momentum scrolling on touch devices */
+    -webkit-overflow-scrolling: touch;
   }
 }

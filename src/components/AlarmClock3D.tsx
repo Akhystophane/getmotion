@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, OrbitControls, Environment, ContactShadows } from '@react-three/drei'
+import { useGLTF, Environment, ContactShadows } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Hook to get responsive 3D settings
@@ -221,20 +221,21 @@ export function AlarmClock3D({ className = '', onReady }: AlarmClock3DProps) {
   const { scale, cameraPosition, fov, modelY } = useResponsive3D()
 
   return (
-    <div className={`relative w-full h-full ${className}`}>
-      {/* Canvas extends beyond container to prevent cropping */}
-      <div 
-        className="absolute pointer-events-auto"
+    <div className={`relative w-full h-full ${className} pointer-events-none`}>
+      {/* Canvas extends beyond container to prevent cropping - pointer events disabled to allow scrolling */}
+      <div
+        className="absolute"
         style={{
           top: '-30%',
           left: '-10%',
           right: '-10%',
           bottom: '-10%',
+          pointerEvents: 'none',
         }}
       >
         <Canvas
           camera={{ position: cameraPosition, fov: fov }}
-          style={{ background: 'transparent', width: '100%', height: '100%' }}
+          style={{ background: 'transparent', width: '100%', height: '100%', touchAction: 'pan-y' }}
           gl={{ alpha: true, antialias: true }}
         >
         <Suspense fallback={null}>
@@ -260,13 +261,7 @@ export function AlarmClock3D({ className = '', onReady }: AlarmClock3DProps) {
             far={5}
           />
           
-          {/* Allow user to rotate view */}
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            minPolarAngle={Math.PI / 4}
-            maxPolarAngle={Math.PI / 2}
-          />
+          {/* OrbitControls removed to allow smooth scrolling on mobile */}
         </Suspense>
         </Canvas>
       </div>

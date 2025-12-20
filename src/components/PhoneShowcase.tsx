@@ -85,11 +85,12 @@ export function PhoneShowcase() {
     offset: ["start start", "end end"]
   })
 
-  // Smooth out the scroll progress with a spring
+  // Smooth out the scroll progress with a spring - improved for better fluidity
   const scrollYProgress = useSpring(rawScrollProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
+    stiffness: 60,
+    damping: 25,
+    restDelta: 0.0001,
+    mass: 0.5
   })
 
   // Separate scroll progress for text entry - tracks entering the section
@@ -441,6 +442,10 @@ export function PhoneShowcase() {
   return (
     // Scroll container - 5 screen heights for the full animation
     <div ref={containerRef} className="relative h-[500vh] bg-white">
+      {/* Scroll snap points for each video - positioned where each video is fully visible */}
+      <div className="absolute w-full h-0 pointer-events-none" style={{ top: '50vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }} />
+      <div className="absolute w-full h-0 pointer-events-none" style={{ top: '250vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }} />
+      <div className="absolute w-full h-0 pointer-events-none" style={{ top: '440vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }} />
       {/* Purple circle - grows from center using clip-path */}
       <motion.div
         className="fixed inset-0 pointer-events-none"
