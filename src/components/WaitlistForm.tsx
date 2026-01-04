@@ -16,7 +16,6 @@ export function WaitlistForm({ className = '', onSuccess }: WaitlistFormProps) {
   const [message, setMessage] = useState('')
 
   const isSubmitting = status === 'submitting'
-  const formClassName = `flex flex-col gap-3 ${className}`.trim()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -79,80 +78,81 @@ export function WaitlistForm({ className = '', onSuccess }: WaitlistFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={formClassName}>
-      <div className="flex flex-col sm:flex-row gap-3">
-        <label className="sr-only" htmlFor="waitlist-role">
-          Role
-        </label>
-        <select
-          id="waitlist-role"
-          value={role}
-          onChange={(event) => setRole(event.target.value)}
-          required
-          disabled={isSubmitting}
-          className="w-full sm:w-40 rounded-lg border border-black/20 bg-white px-3 py-2 text-sm sm:text-base font-sans text-black focus:outline-none focus:ring-2 focus:ring-black/30"
-        >
-          <option value="" disabled>
+    <form onSubmit={handleSubmit} className={className}>
+      <div className="space-y-8">
+        {/* Role field */}
+        <div>
+          <label htmlFor="role" className="block text-base font-medium text-black/70 mb-3">
             I am a...
-          </option>
-          <option value="content_creator">Content creator</option>
-          <option value="agency">Agency</option>
-        </select>
+          </label>
+          <select
+            id="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+            disabled={isSubmitting}
+            className="w-full px-6 py-4 rounded-xl border border-black/20 bg-white text-lg focus:outline-none focus:border-black/40 focus:ring-4 focus:ring-black/5 disabled:opacity-50 disabled:cursor-not-allowed appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 20 20%27%3E%3Cpath fill=%27%23000%27 fill-opacity=%270.5%27 d=%27M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z%27/%3E%3C/svg%3E')] bg-[right_1rem_center] bg-no-repeat pr-12"
+          >
+            <option value="">Select your role</option>
+            <option value="content_creator">Content creator</option>
+            <option value="agency">Agency</option>
+          </select>
+        </div>
 
-        <label className="sr-only" htmlFor="waitlist-email">
-          Email
-        </label>
-        <input
-          id="waitlist-email"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-          disabled={isSubmitting}
-          placeholder="you@email.com"
-          className="w-full flex-1 rounded-lg border border-black/20 bg-white px-3 py-2 text-sm sm:text-base font-sans text-black placeholder:text-black/40 focus:outline-none focus:ring-2 focus:ring-black/30"
-        />
+        {/* Email field */}
+        <div>
+          <label htmlFor="email" className="block text-base font-medium text-black/70 mb-3">
+            Email address
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            disabled={isSubmitting}
+            placeholder="you@example.com"
+            className="w-full px-6 py-4 rounded-xl border border-black/20 bg-white text-lg placeholder:text-black/40 focus:outline-none focus:border-black/40 focus:ring-4 focus:ring-black/5 disabled:opacity-50 disabled:cursor-not-allowed"
+          />
+        </div>
 
+        {/* Error/Success message */}
+        {message && (
+          <div
+            className={`px-4 py-3 rounded-lg text-sm ${
+              status === 'success'
+                ? 'bg-green-50 text-green-800 border border-green-200'
+                : 'bg-red-50 text-red-800 border border-red-200'
+            }`}
+          >
+            {message}
+          </div>
+        )}
+
+        {/* Submit button */}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="relative group cursor-pointer px-5 py-2 sm:px-6 sm:py-3 font-sans font-medium text-sm sm:text-base tracking-wide text-white rounded-lg transition-all duration-300 ease-out hover:scale-[1.01] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full px-8 py-5 font-sans font-semibold text-lg text-white rounded-xl transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
           style={{
-            background: `
-              linear-gradient(
-                145deg,
-                rgba(50, 50, 55, 1) 0%,
-                rgba(25, 25, 28, 1) 25%,
-                rgba(15, 15, 18, 1) 50%,
-                rgba(20, 20, 23, 1) 75%,
-                rgba(35, 35, 40, 1) 100%
-              )
-            `,
-            boxShadow: `
-              0 6px 15px rgba(0, 0, 0, 0.5),
-              0 3px 8px rgba(0, 0, 0, 0.3),
-              inset 0 1px 1px rgba(255, 255, 255, 0.12),
-              inset 1px 0 1px rgba(255, 255, 255, 0.06),
-              inset 0 -2px 3px rgba(0, 0, 0, 0.5),
-              inset -1px 0 2px rgba(0, 0, 0, 0.4),
-              inset 0 0 10px rgba(0, 0, 0, 0.2)
-            `,
-            border: '1px solid rgba(60, 60, 65, 0.8)'
+            background: 'linear-gradient(145deg, rgba(50, 50, 55, 1) 0%, rgba(25, 25, 28, 1) 25%, rgba(15, 15, 18, 1) 50%, rgba(20, 20, 23, 1) 75%, rgba(35, 35, 40, 1) 100%)',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15)',
+            border: '1px solid rgba(70, 70, 75, 0.9)'
           }}
         >
-          {isSubmitting ? 'Sending...' : 'Join the waitlist'}
+          {isSubmitting ? (
+            <span className="flex items-center justify-center gap-3">
+              <svg className="animate-spin h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Sending...
+            </span>
+          ) : (
+            'Join the waitlist'
+          )}
         </button>
       </div>
-
-      {message ? (
-        <p
-          className={`text-xs sm:text-sm font-sans ${
-            status === 'success' ? 'text-black/70' : 'text-red-600'
-          }`}
-        >
-          {message}
-        </p>
-      ) : null}
     </form>
   )
 }

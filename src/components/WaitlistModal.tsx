@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { MotionButton } from './MotionButton'
 import { WaitlistForm } from './WaitlistForm'
 
@@ -35,44 +36,51 @@ export function WaitlistModal({ buttonText = 'Join the waitlist', className = ''
     <>
       <MotionButton text={buttonText} onClick={() => setIsOpen(true)} className={className} />
 
-      {isOpen ? (
+      {isOpen && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
           onClick={() => setIsOpen(false)}
         >
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-lg" />
+
+          {/* Modal */}
           <div
-            className="relative z-10 w-full max-w-xl rounded-2xl border border-black/15 bg-white/95 p-5 sm:p-6 shadow-[0_18px_50px_rgba(0,0,0,0.25)]"
+            className="relative w-full max-w-[900px] bg-white rounded-2xl shadow-2xl"
             role="dialog"
             aria-modal="true"
             aria-labelledby="waitlist-title"
-            onClick={(event) => event.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 id="waitlist-title" className="font-serif text-xl sm:text-2xl text-black">
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="absolute right-6 top-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors"
+              aria-label="Close"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 2L14 14M2 14L14 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+
+            {/* Content */}
+            <div className="p-16">
+              <div className="mb-12">
+                <h2 id="waitlist-title" className="font-serif text-5xl text-black mb-4">
                   Join the waitlist
-                </h3>
-                <p className="mt-1 text-sm sm:text-base text-black/60">
-                  Tell us who you are and we will reach out with early access.
+                </h2>
+                <p className="text-xl text-black/60">
+                  Tell us who you are and we'll reach out with early access.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition hover:text-black"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-            </div>
 
-            <div className="mt-5">
-              <WaitlistForm onSuccess={() => setIsOpen(false)} className="gap-4" />
+              <WaitlistForm onSuccess={() => setIsOpen(false)} />
             </div>
           </div>
-        </div>
-      ) : null}
+        </div>,
+        document.body
+      )}
     </>
   )
 }

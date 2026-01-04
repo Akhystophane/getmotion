@@ -269,8 +269,8 @@ export function Hero({ onReady }: HeroProps) {
       {/* Bottom Section - 3D Model Area with Grid */}
       <div className="relative z-10 flex-1 flex items-start justify-center mt-2 sm:mt-4 mb-20 sm:mb-16 mx-4 sm:mx-8 md:mx-16 lg:mx-20">
         {/* Fixed Grid that scales proportionally */}
-        <svg 
-          className="absolute inset-0 w-full h-full overflow-visible"
+        <svg
+          className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
           viewBox={`${-overflow} ${-overflow} ${gridWidth + overflow * 2} ${gridHeight + overflow * 2}`}
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
@@ -356,7 +356,7 @@ export function Hero({ onReady }: HeroProps) {
         </svg>
         
         {/* 3D Model Container */}
-        <div className="relative w-full h-full flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
           <Suspense fallback={
             <div className="w-full h-full flex items-center justify-center">
               <div className="w-32 h-32 rounded-full border-4 border-black/10 border-t-black/40 animate-spin" />
@@ -368,7 +368,7 @@ export function Hero({ onReady }: HeroProps) {
 
         {/* CTA Button - appears with pop animation after page loads */}
         <motion.div
-          className="absolute bottom-[5%] sm:bottom-[8%] md:bottom-[10%] left-1/2 z-20"
+          className="absolute bottom-[5%] sm:bottom-[8%] md:bottom-[10%] left-1/2 z-50 pointer-events-auto"
           initial={{ opacity: 0, scale: 0.3, y: 50, x: '-50%' }}
           animate={isReady ? {
             opacity: 1,
