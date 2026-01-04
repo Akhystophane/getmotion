@@ -185,7 +185,7 @@ export function HowItWorks() {
             part1="Send an audio,"
             part2="script and optional"
             part3="assets"
-            description="Share your creative vision with us through audio recordings, written scripts, or any supporting materials you have."
+            description="Let the AI agent suggest assets, add yours, and pick your video editing style."
             sectionScrollProgress={scrollYProgress}
           />
 
@@ -193,10 +193,10 @@ export function HowItWorks() {
           <Step
             index={1}
             stepNumber={2}
-            part1="We build"
-            part2="your motion"
+            part1="AI agent"
+            part2="builds your"
             part3="video"
-            description="Our team transforms your content into polished, professional motion videos tailored to your brand and style."
+            description="The AI agent crafts a storyboard and picks animations with you, so you can edit alongside it."
             sectionScrollProgress={scrollYProgress}
           />
 

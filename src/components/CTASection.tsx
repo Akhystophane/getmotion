@@ -25,7 +25,7 @@ export function CTASection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.33, 1, 0.68, 1] }}
           >
-            See what we can create for you. Get your first sample video free.
+            See what the AI agent can create for you.
           </motion.p>
 
           {/* CTA Button */}

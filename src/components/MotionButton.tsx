@@ -9,7 +9,7 @@ interface MotionButtonProps {
 const WHATSAPP_URL = "https://wa.me/33768256764?text=Hi%2C%20I%E2%80%99d%20like%20my%20free%20video%20sample.%20Here%E2%80%99s%20my%20script%2Fidea%3A"
 
 export function MotionButton({
-  text = "Get a Free Sample",
+  text = "Join the waitlist",
   onClick,
   className = ''
 }: MotionButtonProps) {

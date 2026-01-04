@@ -232,9 +232,9 @@ export function Hero({ onReady }: HeroProps) {
           animate={isReady ? { opacity: 1 } : undefined}
           transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
         >
-          You send scripts or ideas. We turn them into ready-to-post videos{' '}
+          Create trendy-style motion graphics videos in{' '}
           <span className="relative inline-block">
-            saving you hours every week.
+            minutes.
             {/* Curved underline - pen stroke style with gradient */}
             <motion.svg 
               className="absolute left-0 w-full overflow-visible pointer-events-none"
