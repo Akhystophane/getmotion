@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { MotionButton } from './MotionButton'
+import { WaitlistForm } from './WaitlistForm'
 
 export function CTASection() {
   return (
@@ -35,7 +35,7 @@ export function CTASection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}
           >
-            <MotionButton />
+            <WaitlistForm className="mx-auto" />
           </motion.div>
         </div>
       </div>

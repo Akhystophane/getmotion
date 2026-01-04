@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { motion } from 'motion/react'
-import { MotionButton } from './MotionButton'
+import { WaitlistForm } from './WaitlistForm'
 
 // Lazy load the 3D model to improve initial load time
 const AlarmClock3D = lazy(() => import('./AlarmClock3D').then(module => ({ default: module.AlarmClock3D })))
@@ -386,7 +386,7 @@ export function Hero({ onReady }: HeroProps) {
           }}
           style={{ transformOrigin: 'center center' }}
         >
-          <MotionButton />
+          <WaitlistForm />
         </motion.div>
       </div>
     </section>
